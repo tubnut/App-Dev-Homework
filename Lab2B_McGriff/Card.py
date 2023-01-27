@@ -1,8 +1,10 @@
-global order 
-global sorder 
+global cardOrderofGreatness
+global sorder
+global order
 
-order = ["Two", "Three", "Four", "Five", "Six", "Seven","Eight", "Nine", "Ten", "JACK", "QUEEN", "KING", "Ace"]
+cardOrderofGreatness = {"Two": 2, "Three": 3, "Four": 4, "Five": 5, "Six": 6, "Seven": 7, "Eight": 8, "Nine": 9, "Ten": 10,"JACK": 10, "QUEEN": 10, "KING": 10, "Ace": 1}
 sorder = ["Hearts", "Diamonds", "Clubs", "Spades" ]
+order = list(cardOrderofGreatness.keys())
 
 class Card():
     def __init__(self, rank,suit,value):

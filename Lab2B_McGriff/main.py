@@ -9,6 +9,21 @@ five = Card("Five", "Spades", 5)
 five2 = Card("Five", "Hearts", 1)
 deck = BlackJackDeck()
 
+print(deck)
+print(len(deck))
+
+deck.discardCard()
+deck.discardCard()
+deck.discardCard()
+deck.discardCard()
 
 print(deck)
 print(len(deck))
+print('\n')
+print(deck.showDiscardPile())
+
+
+
+
+
+

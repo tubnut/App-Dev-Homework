@@ -1,12 +1,20 @@
+def vowelCheck(char):
+    vowels = ['a','e','i','o','u']
+    if char in vowels:
+        return True
+    else:
+        return False
 
 def sortList(listy):
     copy = []
+    expendables = []
+    temp = ''
     listy.sort(key=lambda x:x[1])
     for i, ele in enumerate(listy):
-        if ele[1] == ele:
-
-
-    return listy
+        temp = listy[i + 1]
+        if ele[1] == temp[1]:
+            expendables.append(ele)
+    return listy + copy
 
 
 test = ['redundant', 'profuse', 'humdrum', 'common', 'obey',
