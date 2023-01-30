@@ -23,11 +23,7 @@ class BlackJackDeck():
         self.deck.remove(self.deck[0])
     
     def draw(self):
-        if len(self.deck) < 1:
-            self.deck = self.deck + self.discard
-            self.shuffleMoment()
-        else:
-            return self.deck.pop(0)
+        return self.deck.pop(0)
 
     def showDiscardPile(self):
         discard = []
