@@ -1,29 +1,15 @@
 from Card import *
 from Deck import *
 
-ace = Card("Ace", "Spades", 1)
-ace2 = Card("Ace", "Spades", 1)
-king = Card("KING", "Clubs", 10)
-ten = Card("Ten", "Hearts", 10)
-five = Card("Five", "Spades", 5)
-five2 = Card("Five", "Hearts", 1)
-deck = BlackJackDeck()
+def countPoints():
+    pass
 
-print(deck)
-print(len(deck))
+def startsWithTen():
+    pass
 
-deck.discardCard()
-deck.discardCard()
-deck.discardCard()
-deck.discardCard()
+dealerHand = []
+playerHand = []
+startLoop = input("Would you like to play a game?(y/n) ")
 
-print(deck)
-print(len(deck))
-print('\n')
-print(deck.showDiscardPile())
-
-
-
-
-
-
+while startLoop == 'y':
+    pass
