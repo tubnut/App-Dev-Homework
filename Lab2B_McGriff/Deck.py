@@ -23,6 +23,9 @@ class BlackJackDeck():
         self.deck.remove(self.deck[0])
     
     def draw(self):
+        if len(self.deck) == 0:
+            self.deck = self.discard
+            self.discard = []
         return self.deck.pop(0)
 
     def showDiscardPile(self):
