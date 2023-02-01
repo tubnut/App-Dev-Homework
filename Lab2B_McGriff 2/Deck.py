@@ -1,5 +1,6 @@
 from Card import *
 import random
+
 class BlackJackDeck():
 
 
@@ -8,7 +9,6 @@ class BlackJackDeck():
         self.shuffleMoment()
         self.discard = []
         
-    
     def __str__(self):
         output = []
         for c in self.deck:
@@ -23,9 +23,6 @@ class BlackJackDeck():
         self.deck.remove(self.deck[0])
     
     def draw(self):
-        if len(self.deck) == 0:
-            self.deck = self.discard
-            self.discard = []
         return self.deck.pop(0)
 
     def showDiscardPile(self):
@@ -35,6 +32,7 @@ class BlackJackDeck():
         return '\n'.join(discard)
 
     def shuffleMoment(self):
+        #credit to 
         for i, card in enumerate(self.deck):
             cringeSwap = random.randrange(i, len(self.deck)) 
             self.deck[i], self.deck[cringeSwap] = self.deck[cringeSwap], card

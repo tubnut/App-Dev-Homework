@@ -23,7 +23,6 @@ class Card():
             self.value = 11
         return self.value
 
-
     def compareValues(self, other):
         if order.index(self.rank) > order.index(other.rank):
             return 1
