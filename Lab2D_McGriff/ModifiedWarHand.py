@@ -3,7 +3,7 @@ import random
 
 class ModifiedWarHand():
 
-    def __init__(self,):
+    def __init__(self):
         self.deck = [Card(r,s, cardOrderofGreatness[r]) for r in cardOrderofGreatness.keys() for s in sorder]
         self.handList = []
         self.discardPile = []
@@ -24,7 +24,7 @@ class ModifiedWarHand():
     def add_to_discard_pile(self, listy):
         self.discard += listy
         listy = []
-    
+
     def play(self):
         return self.deck.pop(0)
 
@@ -35,7 +35,7 @@ class ModifiedWarHand():
         return '\n'.join(discard)
 
     def shuffleMoment(self):
-        #credit to 
+        #credit to ShadowRunner on StackOverflow
         for i, card in enumerate(self.deck):
             cringeSwap = random.randrange(i, len(self.deck)) 
             self.deck[i], self.deck[cringeSwap] = self.deck[cringeSwap], card
