@@ -21,7 +21,7 @@ class Deck():
         self.discard.append(self.deck[0])
         self.deck.remove(self.deck[0])
 
-    def play(self):
+    def draw(self):
         return self.deck.pop(0)
 
     def showDiscardPile(self):
