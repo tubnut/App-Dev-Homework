@@ -1,8 +1,4 @@
-from colorama import Fore
 from Card import *
-from Deck import *
-
-deck = BlackJackDeck()
 
 def dealCards():
     for _ in range(2):
@@ -25,8 +21,8 @@ def displayHand(player):
         print(card)
 
 def board():
-    print('\n' + Fore.RED + f"Dealer shows: {dealerHand[0]} \n")
-    print(Fore.GREEN + "Player has:")
+    print(f"\nDealer shows: {dealerHand[0]} \n")
+    print("Player has:")
     displayHand(playerHand)
     print("Player points: " + str(countPoints(playerHand)))
 
@@ -42,7 +38,7 @@ playerHand = []
 dealerHand = []
 
 while True:
-    startLoop = input(Fore.WHITE + "Would you like to play BlackJack?(y/n) ")
+    startLoop = input("Would you like to play BlackJack?(y/n) ")
 
     deck.discard += playerHand + dealerHand
 
@@ -75,7 +71,7 @@ while True:
     while countPoints(dealerHand) < 17:
         dealerHand.append(deck.draw())
     
-    ask = input(Fore.WHITE + "Would you like to hit?(y/n) ")
+    ask = input("Would you like to hit?(y/n) ")
     while ask == 'y':   
         playerHand.append(deck.draw())
         board()
@@ -86,7 +82,7 @@ while True:
         if countPoints(playerHand) == 21:
             print("You Win")
             break
-        ask = input(Fore.WHITE + "Would you like to hit again?(y/n) ")
+        ask = input("Would you like to hit again?(y/n) ")
         if ask == 'n':
             break
         

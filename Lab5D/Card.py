@@ -1,17 +1,23 @@
+import pygame
+from pygame.locals import *
+
 global cardOrderofGreatness
 global sorder
 global order
 
-cardOrderofGreatness = {"Two": 2, "Three": 3, "Four": 4, "Five": 5, "Six": 6, "Seven": 7, "Eight": 8, "Nine": 9, "Ten": 10,"JACK": 10, "QUEEN": 10, "KING": 10, "Ace": 1}
-sorder = ["Hearts", "Diamonds", "Clubs", "Spades" ]
+cardOrderofGreatness = {"two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,"jack": 10, "queen": 10, "king": 10, "ace": 1}
+sorder = ["hearts", "diamonds", "clubs", "spades" ]
 order = list(cardOrderofGreatness.keys())
 
 class Card():
-    def __init__(self, rank,suit,value):
+    def __init__(self, rank,suit,value, facing = True):
         self.rank = rank
         self.suit = suit
         self.value = value
-    
+        self.up = facing
+        self.frontImage = pygame.image.load(f'Resources/Cards/{self.rank.lower()}Of{self.suit.title()}.png')
+        self.backImage = pygame.image.load('Resources/cardBack.png')
+
     def __eq__(self, other):
         return self.value == other.value
 
@@ -22,6 +28,12 @@ class Card():
         if self.rank == "Ace":
             self.value = 11
         return self.value
+    
+    def display(self, win, x, y):
+        if self.up:
+            win.blit(self.frontImage, (x,y))
+        else:
+            win.blit(self.backImage, (x,y))
 
     def compareValues(self, other):
         if order.index(self.rank) > order.index(other.rank):
@@ -33,3 +45,9 @@ class Card():
                 return 1
             return -1
         return -1
+    
+    def flipUp(self):
+        self.up = True
+
+    def flipDown(self):
+        self.up = False

@@ -7,7 +7,7 @@ class Person():
     def __init__(self,x_pos=10, y_pos=10):
         self.x_pos=x_pos
         self.y_pos=y_pos
-        self.img = pygame.image.load('Smiley.jpg')
+        self.img = pygame.image.load('goofyAhhCat.png')
 
     def __str__(self):
         return 'Position=({},{}), Height={}, Width={}, Color={}'.format(
@@ -42,7 +42,7 @@ class Person():
         return (self.x_pos,self.y_pos,my_rect[2],my_rect[3])
     
     def jump(self):
-        pass
+        self.change_y(-100)
     
     def collision(self, other):
         if (self.y_pos + 50 >= other.y_pos and self.y_pos <= other.y_pos + 50) and (self.x_pos + 50 >= other.x_pos and self.x_pos <= other.x_pos + 50):
