@@ -33,9 +33,9 @@ def countPoints():
     playerRect.center = (75,575)
     my_display.blit(playerScoreText, playerRect)
 
-    dealerScoreText = font.render(f'Score: {sum([card.value for card in dealerCards if card.up] )}', True, (255,255,255))
-    dealerRect = dealerScoreText.get_rect()
-    my_display.blit(dealerScoreText, dealerRect)
+    #dealerScoreText = font.render(f'Score: {sum([card.value for card in dealerCards if card.up] )}', True, (255,255,255))
+    #dealerRect = dealerScoreText.get_rect()
+    #my_display.blit(dealerScoreText, dealerRect)
 
 
 #Prints cards to the screen and offsets their x value by 50
@@ -72,17 +72,21 @@ my_display = pygame.display.set_mode((800,600))
 clock = pygame.time.Clock()
 pygame.display.set_caption('BlackJack Time')
 
+
 font = pygame.font.Font('freesansbold.ttf', 32)
 
 dealCards()
 
-button1 = font.render('Hit' , True , (0,0,0))
+button1 = font.render('Hit!' , True , (0,0,0))
 button2 = font.render('Stay' , True , (0,0,0))
+button3 = font.render('Play again?', True, (0,0,0))
 
 
 playerTurn = True
 winner = "None"
 displayWinner = False
+
+title = font.render('Blackjack Game', True, (255,255,255))
 
 #Game Loop
 end = True
@@ -91,6 +95,7 @@ while end:
     pygame.display.update()
     clock.tick(30)
     my_display.fill((40,125,60))
+    my_display.blit(title, (263,2))
 
     if startsWithTen(playerCards):
         declareWinner("Player")
@@ -128,3 +133,10 @@ while end:
                     displayWinner = True
     if displayWinner == True:
         declareWinner(winner)
+
+        dealerCards[1].flipUp()
+        dealerScoreText = font.render(f'Score: {sum([card.value for card in dealerCards])}', True, (255,255,255))
+        dealerRect = dealerScoreText.get_rect()
+        my_display.blit(dealerScoreText, dealerRect)
+
+        buttonMakerBecauseImTooLazyToMakeAClass(button3, 600, 300)
