@@ -2,6 +2,7 @@ import pygame, sys
 from pygame.locals import *
 from Card import *
 from Deck import *
+
 #checks if player starts with 10 and an Ace
 def startsWithTen(hand):
     for c in hand:
@@ -33,11 +34,6 @@ def countPoints():
     playerRect.center = (75,575)
     my_display.blit(playerScoreText, playerRect)
 
-    #dealerScoreText = font.render(f'Score: {sum([card.value for card in dealerCards if card.up] )}', True, (255,255,255))
-    #dealerRect = dealerScoreText.get_rect()
-    #my_display.blit(dealerScoreText, dealerRect)
-
-
 #Prints cards to the screen and offsets their x value by 50
 def displayCards():
     x = 100
@@ -56,8 +52,8 @@ def declareWinner(winner):
     winnerRect.center = (400,300)
     my_display.blit(winnerText, winnerRect)
 
-def buttonMakerBecauseImTooLazyToMakeAClass(button, x, y):
-    pygame.draw.rect(my_display, (255,255,255), pygame.Rect((x,y),(70,30)), 15, 3)
+def buttonMakerBecauseImTooLazyToMakeAClass(button, x, y, w, h):
+    pygame.draw.rect(my_display, (255,255,255), pygame.Rect((x,y),(w,h)), 15, 3)
     my_display.blit(button, (x,y))
 
 
@@ -85,13 +81,13 @@ button3 = font.render('Play again?', True, (0,0,0))
 playerTurn = True
 winner = "None"
 displayWinner = False
+nextTurn = False
 
 title = font.render('Blackjack Game', True, (255,255,255))
 
 #Game Loop
 end = True
 while end:
-
     pygame.display.update()
     clock.tick(30)
     my_display.fill((40,125,60))
@@ -103,14 +99,22 @@ while end:
     if startsWithTen(dealerCards):
         declareWinner("Dealer")
 
+    if nextTurn:
+        playerCards = []
+        dealerCards = []
+        my_display.fill((40,125,60))
+        nextTurn = False
+        displayWinner = False
+        dealCards()
+        
+
     displayCards()
     countPoints()
 
-    buttonMakerBecauseImTooLazyToMakeAClass(button1, 25, 200)
-    buttonMakerBecauseImTooLazyToMakeAClass(button2, 25, 300)
+    buttonMakerBecauseImTooLazyToMakeAClass(button1, 25, 200, 70, 30)
+    buttonMakerBecauseImTooLazyToMakeAClass(button2, 25, 300, 70, 30)
 
     mouse = pygame.mouse.get_pos()
-    print(mouse)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT or (event.type==KEYDOWN and event.key==K_ESCAPE):
@@ -131,6 +135,18 @@ while end:
                 if sum([card.value for card in dealerCards]) > 21:
                     winner = "Player"
                     displayWinner = True
+                else:
+                    if sum([card.value for card in dealerCards]) > sum([card.value for card in playerCards]):
+                        winner = "Dealer"
+                        displayWinner = True
+                    if sum([card.value for card in dealerCards]) < sum([card.value for card in playerCards]):
+                        winner = "Player"
+                        displayWinner = True
+                    if sum([card.value for card in dealerCards]) == sum([card.value for card in playerCards]):
+                        winner = "Dealer"
+                        displayWinner = True
+            if (600 <= mouse[0] <= 780 and 300 <= mouse[1] <= 330):
+                    nextTurn = True
     if displayWinner == True:
         declareWinner(winner)
 
@@ -139,4 +155,4 @@ while end:
         dealerRect = dealerScoreText.get_rect()
         my_display.blit(dealerScoreText, dealerRect)
 
-        buttonMakerBecauseImTooLazyToMakeAClass(button3, 600, 300)
+        buttonMakerBecauseImTooLazyToMakeAClass(button3, 600, 300, 180,30)

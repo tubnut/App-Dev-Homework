@@ -5,6 +5,7 @@ def dealCards():
         dealerHand.append(deck.draw())
     for _ in range(2):
         playerHand.append(deck.draw())
+        
 
 def countPoints(hand):
     return sum([card.value for card in hand])
