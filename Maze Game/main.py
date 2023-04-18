@@ -1,7 +1,8 @@
 import pygame as pg
 from pygame.locals import *
-from Rectangle import *
+from Player import *
 from Levels import *
+from Teleporter import *
 
 
 #Basic PyGame setup code
@@ -65,8 +66,13 @@ level3 =  [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 Maze1 = Level(level1, 16, 16)
 Maze2 = Level(level2, 16, 16)
 Maze3 = Level(level3, 16, 16)
-player = Rectangle(70,475, 50, 50, "Green")
-teleporter1 = Rectangle(400,300,50,50, "Red")
+player = Player(70,475, 50, 50, "Green")
+teleporter1 = Teleporter(400,300,50,50, "Red")
+
+firstLevel = True
+secondLevel, thirdLevel = False
+
+
 
 #Game Loop
 while run:
@@ -79,8 +85,10 @@ while run:
     teleporter1.draw(screen)
 
     #Logic
-    if pg.Rect.colliderect(player, teleporter1):
+
+    if player.collision(teleporter1):
         print("Working")
+
     #Event Loop
     for event in pg.event.get():
         if event.type == pg.QUIT:
