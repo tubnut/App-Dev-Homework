@@ -19,9 +19,9 @@ def collideWall(maze):
             if type(maze[r][c]) == Wall:
                 walls.append(maze[r][c])
 
-    # if any([Wall.collision(player) for wall in walls]):
-    #     pass
-    print(walls)
+    if any([wall.collision(player) for wall in walls]):
+        return True
+    
 
 #Objects
 level1 =  [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -87,7 +87,6 @@ firstLevel = True
 secondLevel = False
 thirdLevel = False
 
-collideWall(Maze1)
 
 #Game Loop
 while run:
@@ -114,8 +113,7 @@ while run:
 
     #Logic
 
-
-    
+    print(collideWall(level1))
 
     #Event Loop
     for event in pg.event.get():
@@ -124,12 +122,24 @@ while run:
             pg.quit()
         if event.type == pg.KEYDOWN:
             if event.key == K_UP:
-                player.move_up()
+                if collideWall(level1):
+                    pass
+                else:
+                    player.move_up()
             if event.key == K_DOWN:
-                player.move_down()
+                if collideWall(level1):
+                    pass
+                else:
+                    player.move_down()
             if event.key == K_LEFT:
-                player.move_left()
+                if collideWall(level1):
+                    pass
+                else:
+                    player.move_left()
             if event.key == K_RIGHT:
-                player.move_right()
+                if collideWall(level1):
+                    pass
+                else:
+                    player.move_right()
 
     pg.display.update()

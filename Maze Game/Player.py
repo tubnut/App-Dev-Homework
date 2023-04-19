@@ -36,4 +36,3 @@ class Player():
     def setPos(self, x, y):
         self.x_pos = x
         self.y_pos = y
-
