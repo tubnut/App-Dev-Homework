@@ -5,6 +5,7 @@ from Levels import *
 from Teleporter import *
 
 
+
 #Basic PyGame setup code
 pg.init()
 pg.key.set_repeat(1)
@@ -83,7 +84,7 @@ teleporter1 = Teleporter(400,300,50,50, "Red")
 teleporter2 = Teleporter(700,50,50,50, "Red")
 teleporter3 = Teleporter(250,600,50,50, "Red")
 
-firstLevel = True
+firstLevel = True 
 secondLevel = False
 thirdLevel = False
 
@@ -95,12 +96,13 @@ while run:
     #Objects
     
     if firstLevel:
+
         Maze1.draw(screen)
         teleporter1.draw(screen)
         if player.collision(teleporter1):
             firstLevel = False
             secondLevel = True
-            player.setPos(55, 50)
+            player.setPos(55, 55)
     elif secondLevel:
         Maze2.draw(screen)
         teleporter2.draw(screen)
@@ -109,7 +111,6 @@ while run:
             player.setPos(246, 609)
 
     player.draw(screen)
-    
 
     #Logic
 
@@ -122,24 +123,50 @@ while run:
             pg.quit()
         if event.type == pg.KEYDOWN:
             if event.key == K_UP:
-                if collideWall(level1):
-                    pass
-                else:
-                    player.move_up()
+                player.move_up()
+                
+                if firstLevel:
+                    if collideWall(level1):
+                        player.move_down()
+                elif secondLevel:
+                    if collideWall(level2):
+                        player.move_down()
+                elif thirdLevel:
+                    if collideWall(level3):
+                        player.move_down()
             if event.key == K_DOWN:
-                if collideWall(level1):
-                    pass
-                else:
-                    player.move_down()
+                player.move_down()
+                if firstLevel:
+                    if collideWall(level1):
+                        player.move_up()
+                elif secondLevel:
+                    if collideWall(level2):
+                        player.move_up()
+                elif thirdLevel:
+                    if collideWall(level3):
+                        player.move_up()
             if event.key == K_LEFT:
-                if collideWall(level1):
-                    pass
-                else:
-                    player.move_left()
+                player.move_left()
+                if firstLevel:
+                    if collideWall(level1):
+                        player.move_right()
+                elif secondLevel:
+                    if collideWall(level2):
+                        player.move_right()
+                elif thirdLevel:
+                    if collideWall(level3):
+                        player.move_right()
             if event.key == K_RIGHT:
-                if collideWall(level1):
-                    pass
-                else:
-                    player.move_right()
+                player.move_right()
+                if firstLevel:
+                    if collideWall(level1):
+                        player.move_left()
+                elif secondLevel:
+                    if collideWall(level2):
+                        player.move_left()
+                elif thirdLevel:
+                    if collideWall(level3):
+                        player.move_left()
+                
 
     pg.display.update()

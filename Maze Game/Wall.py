@@ -15,5 +15,5 @@ class Wall():
         window.blit(self.img,(self.x_pos,self.y_pos))
 
     def collision(self, other):
-        if (self.y_pos + 50 >= other.y_pos and self.y_pos <= other.y_pos + 50) and (self.x_pos + 50 >= other.x_pos and self.x_pos <= other.x_pos + 50):
+        if (self.y_pos + 30 >= other.y_pos and self.y_pos <= other.y_pos + 30) and (self.x_pos + 30 >= other.x_pos and self.x_pos <= other.x_pos + 30):
             return True
