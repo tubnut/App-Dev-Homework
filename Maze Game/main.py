@@ -116,7 +116,7 @@ winnerRect.center = (400,400)
 #Game Loop
 while run:
     screen.fill((192,192,192))
-    clock.tick(60)
+    clock.tick(60) 
     #Objects
 
     livesText = font.render(f'Lives = {lives}', True, (255,255,255))
