@@ -2,7 +2,12 @@ import pygame
 from pygame.locals import *
 
 class Obstacle(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.x = x
+        self.y = y
+        self.img = pygame.image.load('Resources/hot.png')
+        self.rect = self.img.get_rect()
 
-    pass
-    # def __init__(self, *groups: _Group) -> None:
-    #     super().__init__(*groups)
+    def draw(self, window):
+        window.blit(self.img, self.rect)  
