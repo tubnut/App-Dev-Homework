@@ -3,11 +3,8 @@ from pygame.locals import *
 from Wall import *
 
 class Level():
-    def __init__(self, mat, length=10, height=10):
+    def __init__(self):
         self.mat = mat
-        self.length = length
-        self.height = height
-
         for r in range(len(mat)):
             for c in range(len(mat[0])):
                 if mat[r][c] == 1:
