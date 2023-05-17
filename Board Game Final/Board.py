@@ -1,8 +1,9 @@
 import pygame
 from pygame.locals import *
 
-class Board():
+class Board(pygame.sprite.Sprite):
     def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
         self.board = [[0,1,0,1,0,1,0,1],
                       [1,0,1,0,1,0,1,0],
                       [0,1,0,1,0,1,0,1],
