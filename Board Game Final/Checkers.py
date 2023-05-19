@@ -22,3 +22,6 @@ class Checkers(pygame.sprite.Sprite):
 
     def draw(self, window):
         window.blit(self.image, self.rect)
+    
+    def update(self):
+        return pygame.MOUSEBUTTONDOWN and self.rect.collidepoint(pygame.mouse.get_pos())

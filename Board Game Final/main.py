@@ -30,18 +30,6 @@ def placeCheckers():
                     blackPieces.add(b)
                     allPieces.add(b)
 
-def followMouse(sprite, bool):
-    if bool:
-        sprite.pos = pos
-
-def drawMovements(sprite):
-    if sprite in redPieces:
-        pygame.draw.rect(screen, (255,255,255), Rect(sprite.rect.x - 75, sprite.rect.y + 75, 75, 75))
-        pygame.draw.rect(screen, (255,255,255), Rect(sprite.rect.x + 75, sprite.rect.y + 75, 75, 75))
-    else:
-        pygame.draw.rect(screen, (255,255,255), Rect(sprite.rect.x - 75, sprite.rect.y - 75, 75, 75))
-        pygame.draw.rect(screen, (255,255,255), Rect(sprite.rect.x + 75, sprite.rect.y - 75, 75, 75))
-
 pygame.init()
 
 FPS = 60
@@ -59,7 +47,8 @@ placeCheckers()
 
 running = True
 showMovements = False
-clickCount = 0
+clickedSprite = None
+
 while running:
 
     pos = pygame.mouse.get_pos()
@@ -70,14 +59,22 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            for sprite in allPieces:
-                if sprite.rect.collidepoint(event.pos):
-                    showMovements = True
-                    clickedSprite = sprite
 
-    if showMovements:
-        drawMovements(clickedSprite)
+        if pygame.mouse.get_pressed()[0]:
+                for sprite in allPieces:
+                    if sprite.rect.collidepoint(event.pos):
+                        sprite.rect.center = pos
+                    if sprite in redPieces:
+                        if pygame.sprite.groupcollide(redPieces, blackPieces, False, True):
+                            pass
+                    if sprite in blackPieces:
+                        if pygame.sprite.groupcollide(redPieces, blackPieces, True, False):
+                            pass
+
+    if len(redPieces) == 0:
+        print("Black Wins")
+    if len(blackPieces) == 0:
+        print("Red Wins")
 
     allPieces.draw(screen)
 
